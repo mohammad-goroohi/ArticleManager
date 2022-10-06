@@ -1,0 +1,46 @@
+﻿@model CreateArticleArticleEditModel
+@inject ArticleManagerContext _context
+@{
+    var articles = await _context.Articles.ToListAsync();
+    Layout = "Layout";
+}
+<link href="~/select2/css/select2.min.css" rel="stylesheet" />
+<form method="post" action="/Article/CreateCite">
+    <input type="hidden" asp-for="SourceArticleID" />
+    <div class="mb-3 row">
+        <label asp-for="DestinationArticleID" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="DestinationArticleID" class="form-control select2 mt-3">
+                <option>select</option>
+                @foreach (var article in articles)
+                {
+                    <option value="@article.ID">@article.Title @article.Link</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a href="/Article/Cites?SourceArticleID=@Model.SourceArticleID" class="btn btn-info">Back</a>
+    </div>
+</form>
+<script src="~/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#Description',
+        plugins: 'advlist autolink link lists preview table code pagebreak',
+        menubar: false,
+        language: 'fa',
+        height: 100,
+        relative_urls: false,
+        toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+    });
+</script>
+<script src="~/select2/js/select2.min.js"></script>

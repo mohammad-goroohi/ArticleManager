@@ -1,0 +1,29 @@
+﻿@model EditArticleArticleEditModel
+@{
+    Layout = "Layout";
+}
+<form method="post" action="/ArticleArticle/Edit">
+    <input asp-for="ID" type="hidden" />
+    <div class="mb-3 row">
+        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/ArticleArticle/Delete?id=@Model.ID" class="btn btn-danger">Delete</a>
+    </div>
+</form>
+<script src="~/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#Description',
+        plugins: 'advlist autolink link lists preview table code pagebreak',
+        menubar: false,
+        language: 'fa',
+        height: 100,
+        relative_urls: false,
+        toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+    });
+</script>

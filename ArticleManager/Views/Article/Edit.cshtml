@@ -1,0 +1,73 @@
+﻿@model EditArticleEditModel
+@{
+    Layout = "Layout";
+}
+<form method="post" action="/Article/Edit">
+    <input asp-for="ID" type="hidden" />
+    <div class="mb-3 row">
+        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Title" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="ArticleDescription" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <textarea asp-for="ArticleDescription" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="MyDescription" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <textarea asp-for="MyDescription" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Link" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Link" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="FilePath" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="FilePath" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="IsRead" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input type="checkbox" asp-for="IsRead" class="form-check-input mt-2">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <a href="/Article/Cites?SourceArticleID=@Model.ID" class="btn btn-primary">Cited By This</a>
+        <a href="/Article/Delete?id=@Model.ID" class="btn btn-danger alert-delete">Delete</a>
+        <a href="/Article/Articles" class="btn btn-info">Back</a>
+    </div>
+</form>
+<script src="~/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#ArticleDescription',
+        plugins: 'advlist autolink link lists preview table code pagebreak',
+        menubar: false,
+        language: 'fa',
+        height: 100,
+        relative_urls: false,
+        toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+    });
+    tinymce.init({
+        selector: 'textarea#MyDescription',
+        plugins: 'advlist autolink link lists preview table code pagebreak',
+        menubar: false,
+        language: 'fa',
+        height: 100,
+        relative_urls: false,
+        toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+    });
+</script>

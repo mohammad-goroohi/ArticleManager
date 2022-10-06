@@ -1,0 +1,41 @@
+﻿@inject ArticleManagerContext _context
+@{
+    List<Article> articles = await _context.Articles.ToListAsync();
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Link</th>
+            <th>FilePath</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in articles)
+        {
+        <tr>
+            <td>@article.Title</td>
+            <td>
+                <a target="_blank" href="@article.Link">@article.Link</a>
+            </td>
+            <td>
+                <a target="_blank" href="/Article/@article.FilePath">@article.FilePath</a>
+            </td>
+            @if (article.IsRead)
+            {
+                <td class="text-success">Read</td>
+            }
+            else
+            {
+                <td class="text-danger">UnRead</td>
+            }
+            <td>
+                <a class="btn btn-primary" href="/Article/Edit?id=@article.ID">Edit</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<a href="/Article/Create" class="btn btn-success">Create</a>

@@ -1,0 +1,31 @@
+﻿@model CreateArticleEditModel
+@{ 
+    Layout = "Layout";
+}
+<form method="post" action="/Article/Create">
+    <div class="mb-3 row">
+        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Title" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Link" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Link" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="FilePath" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="FilePath" class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a href="/Article/Articles" class="btn btn-info">Back</a>
+    </div>
+</form>

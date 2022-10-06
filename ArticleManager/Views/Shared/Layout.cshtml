@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/bootstrap-5.2.2-dist/css/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="~/DataTables/DataTables-1.12.1/css/dataTables.bootstrap5.min.css" />
+    <script src="~/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+    <script src="~/DataTables/DataTables-1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/DataTables/DataTables-1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+            $('.alert-delete').on("click", function (e) {
+                e.preventDefault();
+                let ans = confirm("Are You Sure You Want Delete This Item?");
+                if (ans) {
+                    window.location.href = e.target.href;
+                }
+            });
+            $('.select2').select2();
+        });
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        @RenderBody()
+    </div>
+</body>
+</html>
