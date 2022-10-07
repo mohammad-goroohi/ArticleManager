@@ -69,6 +69,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Articles\" />
     <Folder Include="wwwroot\jquery-3.6.1\" />
   </ItemGroup>
 
