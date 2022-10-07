@@ -45,7 +45,8 @@
     </div>
     <div class="mb-3">
         <button type="submit" class="btn btn-success">Submit</button>
-        <a href="/Article/Cites?SourceArticleID=@Model.ID" class="btn btn-primary">Cited By This</a>
+        <a href="/Article/Cites?id=@Model.ID" class="btn btn-primary">Cited By This</a>
+        <a href="/Article/CitedBys?id=@Model.ID" class="btn btn-primary">Cited This</a>
         <a href="/Article/Delete?id=@Model.ID" class="btn btn-danger alert-delete">Delete</a>
         <a href="/Article/Articles" class="btn btn-info">Back</a>
     </div>

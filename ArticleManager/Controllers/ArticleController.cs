@@ -88,9 +88,9 @@ namespace ArticleManager.Controllers
         }
 
         [HttpGet]
-        public IActionResult Cites(int SourceArticleID)
+        public IActionResult Cites(int id)
         {
-            ViewData["SourceArticleID"] = SourceArticleID;
+            ViewData["id"] = id;
             return View();
         }
         [HttpGet]
@@ -114,9 +114,15 @@ namespace ArticleManager.Controllers
                 ArticleArticle articleArticle = _mapper.Map<ArticleArticle>(model);
                 await _context.ArticleArticles.AddAsync(articleArticle);
                 await _context.SaveChangesAsync();
-                return Redirect("/Article/Cites?SourceArticleID="+model.SourceArticleID);
+                return Redirect("/Article/Cites?id="+model.SourceArticleID);
             }
             return View(model);
+        }
+        [HttpGet]
+        public IActionResult CitedBys(int id)
+        {
+            ViewData["id"] = id;
+            return View();
         }
     }
 }

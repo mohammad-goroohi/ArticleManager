@@ -45,7 +45,7 @@ namespace ArticleManager.Controllers
                 articleArticle = _mapper.Map(model, articleArticle);
                 _context.Entry(articleArticle).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return Redirect("/Article/Cites?SourceArticleID=" + articleArticle.SourceArticleID);
+                return Redirect("/Article/Cites?id=" + articleArticle.SourceArticleID);
             }
             return View(model);
         }
@@ -55,7 +55,7 @@ namespace ArticleManager.Controllers
             ArticleArticle articleArticle = await _context.ArticleArticles.SingleOrDefaultAsync(aa=>aa.ID==id);
             _context.ArticleArticles.Remove(articleArticle);
             await _context.SaveChangesAsync();
-            return Redirect("/Article/Cites?SourceArticleID="+articleArticle.SourceArticleID);
+            return Redirect("/Article/Cites?id="+articleArticle.SourceArticleID);
         }
     }
 }

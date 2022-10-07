@@ -1,6 +1,6 @@
 ﻿@inject ArticleManagerContext _context
 @{
-    Article artcl = await _context.Articles.Include(a=>a.Cites).ThenInclude(aa=>aa.DestinationArticle).SingleOrDefaultAsync(a=>a.ID==(int)ViewData["id"]);
+    Article artcl = await _context.Articles.Include(a => a.CitedBys).ThenInclude(aa => aa.SourceArticle).SingleOrDefaultAsync(a => a.ID == (int)ViewData["id"]);
 }
 <table class="table table-hover">
     <thead>
@@ -14,17 +14,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var article in artcl.Cites)
+        @foreach (var article in artcl.CitedBys)
         {
             <tr>
-                <td>@article.DestinationArticle.Title</td>
+                <td>@article.SourceArticle.Title</td>
                 <td>
-                    <a target="_blank" href="@article.DestinationArticle.Link">@article.DestinationArticle.Link</a>
+                    <a target="_blank" href="@article.SourceArticle.Link">@article.SourceArticle.Link</a>
                 </td>
                 <td>
-                    <a target="_blank" href="/Article/@article.DestinationArticle.FilePath">@article.DestinationArticle.FilePath</a>
+                    <a target="_blank" href="/Article/@article.SourceArticle.FilePath">@article.SourceArticle.FilePath</a>
                 </td>
-                @if (article.DestinationArticle.IsRead)
+                @if (article.SourceArticle.IsRead)
                 {
                     <td class="text-success">Read</td>
                 }
@@ -40,5 +40,4 @@
         }
     </tbody>
 </table>
-<a href="/Article/CreateCite?SourceArticleID=@((int)ViewData["id"])" class="btn btn-success">Create</a>
 <a href="/Article/Edit?id=@((int)ViewData["id"])" class="btn btn-info">Back</a>
