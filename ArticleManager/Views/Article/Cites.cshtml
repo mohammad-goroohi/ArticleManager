@@ -1,6 +1,6 @@
 ﻿@inject ArticleManagerContext _context
 @{
-    Article artcl = await _context.Articles.Include(a=>a.Cites).ThenInclude(aa=>aa.DestinationArticle).SingleOrDefaultAsync(a=>a.ID==(int)ViewData["id"]);
+    Article artcl = await _context.Articles.Include(a => a.Cites).ThenInclude(aa => aa.DestinationArticle).SingleOrDefaultAsync(a => a.ID == (int)ViewData["id"]);
 }
 <table class="table table-hover">
     <thead>
@@ -22,7 +22,7 @@
                     <a target="_blank" href="@article.DestinationArticle.Link">@article.DestinationArticle.Link</a>
                 </td>
                 <td>
-                    <a target="_blank" href="/Articles/@article.DestinationArticle.FilePath">@article.DestinationArticle.FilePath</a>
+                    <a onclick="openArticle('@article.DestinationArticle.FilePath')" href="#">@article.DestinationArticle.FilePath</a>
                 </td>
                 @if (article.DestinationArticle.IsRead)
                 {
@@ -42,3 +42,4 @@
 </table>
 <a href="/Article/CreateCite?SourceArticleID=@((int)ViewData["id"])" class="btn btn-success">Create</a>
 <a href="/Article/Edit?id=@((int)ViewData["id"])" class="btn btn-info">Back</a>
+<script src="~/MyScripts/OpenArticle.js"></script>

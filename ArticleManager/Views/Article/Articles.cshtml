@@ -15,27 +15,28 @@
     <tbody>
         @foreach (var article in articles)
         {
-        <tr>
-            <td>@article.Title</td>
-            <td>
-                <a target="_blank" href="@article.Link">@article.Link</a>
-            </td>
-            <td>
-                <a target="_blank" href="/Articles/@article.FilePath">@article.FilePath</a>
-            </td>
-            @if (article.IsRead)
-            {
-                <td class="text-success">Read</td>
-            }
-            else
-            {
-                <td class="text-danger">UnRead</td>
-            }
-            <td>
-                <a class="btn btn-primary" href="/Article/Edit?id=@article.ID">Edit</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@article.Title</td>
+                <td>
+                    <a target="_blank" href="@article.Link">@article.Link</a>
+                </td>
+                <td>
+                    <a onclick="openArticle('@article.FilePath')" href="#">@article.FilePath</a>
+                </td>
+                @if (article.IsRead)
+                {
+                    <td class="text-success">Read</td>
+                }
+                else
+                {
+                    <td class="text-danger">UnRead</td>
+                }
+                <td>
+                    <a class="btn btn-primary" href="/Article/Edit?id=@article.ID">Edit</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 <a href="/Article/Create" class="btn btn-success">Create</a>
+<script src="~/MyScripts/OpenArticle.js"></script>
