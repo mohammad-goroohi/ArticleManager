@@ -17,5 +17,9 @@ namespace ArticleManager.Models.EditModels
         public string Link { get; set; } = "";
         public string FilePath { get; set; } = "";
         public bool IsRead { get; set; } = false;
+        [Range(1950,int.MaxValue,ErrorMessage ="Published Year Must Be Grater Than 1950")]
+        public int PublishedYear { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "CitationCountInGoogleScholar  Must Be Grater Than Zero")]
+        public int CitationCountInGoogleScholar { get; set; }
     }
 }
