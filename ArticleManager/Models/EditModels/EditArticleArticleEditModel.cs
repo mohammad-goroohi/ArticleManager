@@ -11,5 +11,6 @@ namespace ArticleManager.Models.EditModels
         [Required]
         public int ID { get; set; }
         public string Description { get; set; } = "";
+        public int ReferenceNumberInSourceArticle { get; set; }
     }
 }

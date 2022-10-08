@@ -15,6 +15,7 @@ namespace ArticleManager.Models.Entities
         public int SourceArticleID { get; set; }
         public int DestinationArticleID { get; set; }
         public string Description { get; set; } = "";
+        public int ReferenceNumberInSourceArticle { get; set; }
         public Article SourceArticle { get; set; }
         public Article DestinationArticle { get; set; }
     }

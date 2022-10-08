@@ -2,43 +2,47 @@
 @{
     Article artcl = await _context.Articles.Include(a => a.CitedBys).ThenInclude(aa => aa.SourceArticle).SingleOrDefaultAsync(a => a.ID == (int)ViewData["id"]);
 }
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Link</th>
-            <th>FilePath</th>
-            <th></th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var article in artcl.CitedBys)
-        {
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td>@article.SourceArticle.Title</td>
-                <td>
-                    <a target="_blank" href="@article.SourceArticle.Link">@article.SourceArticle.Link</a>
-                </td>
-                <td>
-                    <a onclick="openArticle('@article.SourceArticle.FilePath')" href="#">@article.SourceArticle.FilePath</a>
-                </td>
-                @if (article.SourceArticle.IsRead)
-                {
-                    <td class="text-success">Read</td>
-                }
-                else
-                {
-                    <td class="text-danger">UnRead</td>
-                }
-                <td>@Html.Raw(article.Description)</td>
-                <td>
-                    <a class="btn btn-primary" href="/ArticleArticle/Edit?id=@article.ID">Edit</a>
-                </td>
+                <th>Reference Number</th>
+                <th>Title</th>
+                <th>Link On The Web</th>
+                <th>Direct File</th>
+                <th></th>
+                <th>Description</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var article in artcl.CitedBys)
+            {
+                <tr>
+                    <td>@article.ReferenceNumberInSourceArticle</td>
+                    <td>@article.SourceArticle.Title</td>
+                    <td>
+                        <a target="_blank" href="@article.SourceArticle.Link">Open</a>
+                    </td>
+                    <td>
+                        <a onclick="openArticle('@article.SourceArticle.FilePath')" href="#">Open</a>
+                    </td>
+                    @if (article.SourceArticle.IsRead)
+                    {
+                        <td class="text-success">Read</td>
+                    }
+                    else
+                    {
+                        <td class="text-danger">UnRead</td>
+                    }
+                    <td dir="rtl">@Html.Raw(article.Description)</td>
+                    <td>
+                        <a class="btn btn-primary" href="/ArticleArticle/Edit?id=@article.ID">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <a href="/Article/Edit?id=@((int)ViewData["id"])" class="btn btn-info">Back</a>
 <script src="~/MyScripts/OpenArticle.js"></script>

@@ -10,6 +10,12 @@
             <textarea asp-for="Description" class="form-control"></textarea>
         </div>
     </div>
+    <div class="mb-3 row">
+        <label asp-for="ReferenceNumberInSourceArticle" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="ReferenceNumberInSourceArticle" class="form-control">
+        </div>
+    </div>
     <div class="mb-3">
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="/ArticleArticle/Delete?id=@Model.ID" class="btn btn-danger">Delete</a>

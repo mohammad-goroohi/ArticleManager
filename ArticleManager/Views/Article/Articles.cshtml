@@ -2,52 +2,54 @@
 @{
     List<Article> articles = await _context.Articles.OrderByDescending(a => a.ID).ToListAsync();
 }
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Link</th>
-            <th>FilePath</th>
-            <th>Published Date</th>
-            <th>Citation Count In GoogleScholar</th>
-            <th>Cite Per Year</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            int i = 0;
-        }
-        @foreach (var article in articles)
-        {
-        <tr>
-            <td>@(++i)</td>
-            <td>@article.Title</td>
-            <td>
-                <a target="_blank" href="@article.Link">@article.Link</a>
-            </td>
-            <td>
-                <a onclick="openArticle('@article.FilePath')" href="#">@article.FilePath</a>
-            </td>
-            <td>@article.PublishedYear</td>
-            <td>@article.CitationCountInGoogleScholar</td>
-            <td>@(article.CitationCountInGoogleScholar/(DateTime.Now.Year-article.PublishedYear))</td>
-            @if (article.IsRead)
-            {
-                <td class="text-success">Read</td>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Link On The Web</th>
+                <th>Direct File</th>
+                <th>Published Date</th>
+                <th>Citation Count In GoogleScholar</th>
+                <th>Cite Per Year</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 0;
             }
-            else
+            @foreach (var article in articles)
             {
-                <td class="text-danger">UnRead</td>
+                <tr>
+                    <td>@(++i)</td>
+                    <td>@article.Title</td>
+                    <td>
+                        <a target="_blank" href="@article.Link">Open</a>
+                    </td>
+                    <td>
+                        <a onclick="openArticle('@article.FilePath')" href="#">Open</a>
+                    </td>
+                    <td>@article.PublishedYear</td>
+                    <td>@article.CitationCountInGoogleScholar</td>
+                    <td>@(article.CitationCountInGoogleScholar/(DateTime.Now.Year-article.PublishedYear))</td>
+                    @if (article.IsRead)
+                    {
+                        <td class="text-success">Read</td>
+                    }
+                    else
+                    {
+                        <td class="text-danger">UnRead</td>
+                    }
+                    <td>
+                        <a class="btn btn-primary" href="/Article/Edit?id=@article.ID">Edit</a>
+                    </td>
+                </tr>
             }
-            <td>
-                <a class="btn btn-primary" href="/Article/Edit?id=@article.ID">Edit</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 <a href="/Article/Create" class="btn btn-success">Create</a>
 <script src="~/MyScripts/OpenArticle.js"></script>

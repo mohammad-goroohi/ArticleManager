@@ -12,6 +12,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20221008095021_addreferrencenumberattribute.cs" />
+    <Compile Remove="Migrations\20221008095021_addreferrencenumberattribute.Designer.cs" />
+    <Compile Remove="Migrations\20221008095141_addreferencenumberattribute.cs" />
+    <Compile Remove="Migrations\20221008095141_addreferencenumberattribute.Designer.cs" />
+    <Compile Remove="Migrations\20221008095248_ReferenceNumberInSourceArticle.cs" />
+    <Compile Remove="Migrations\20221008095248_ReferenceNumberInSourceArticle.Designer.cs" />
+    <Compile Remove="Migrations\20221008095356_ReferenceNumberInSourceArticle.cs" />
+    <Compile Remove="Migrations\20221008095356_ReferenceNumberInSourceArticle.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="C:\Users\Lenovo\.nuget\packages\bootstrap\5.2.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" />
     <Content Remove="C:\Users\Lenovo\.nuget\packages\bootstrap\5.2.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" />
     <Content Remove="C:\Users\Lenovo\.nuget\packages\bootstrap\5.2.1\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css" />
