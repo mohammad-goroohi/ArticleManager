@@ -18,6 +18,8 @@ namespace ArticleManager.Models.Entities
         public string Link { get; set; } = "";
         public string FilePath { get; set; } = "";
         public bool IsRead { get; set; } = false;
+        public int PublishedYear { get; set; }
+        public int CitationCountInGoogleScholar { get; set; }
         public List<ArticleArticle> CitedBys { get; set; }
         public List<ArticleArticle> Cites { get; set; }
     }
